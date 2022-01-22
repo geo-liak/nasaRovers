@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/App.css";
+import { BrowserRouter } from "react-router-dom";
+import RouteDefinitions from "./Routes";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className='App'>
+			{/* <h1>Photos taken by the NASA rovers</h1> */}
+			<BrowserRouter>
+				<RouteDefinitions />
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;
