@@ -24,13 +24,13 @@ export default function RoverCard(props) {
 		setSelectedDate(e.target.value);
 	};
 
-	const onMouseEnter = () => console.log("hover");
+
 
 	const style = {
 		// color: "red",
 		borderStyle: "solid",
 		borderWidth: "2px",
-		width: "35%",
+		width: "45%",
 		position: "center",
 		margin: "20px auto",
 		padding: "5px 10px",
@@ -52,8 +52,11 @@ export default function RoverCard(props) {
 					<Card.Title className="">{props.name}</Card.Title>
 					<Card.Subtitle className="mb-2 text-muted">Mission {(props.status === 'complete') ? 'completed' : 'active'}</Card.Subtitle>
 					<Card.Text className="">Photos taken: {props.total_photos}</Card.Text>
-					<Card.Text className=""> Landed on: {new Date(props.landing_date).toLocaleDateString(undefined, dateSettings)}</Card.Text>
+					<Card.Text className="my-0"> Landed on: {new Date(props.landing_date).toLocaleDateString(undefined, dateSettings)}</Card.Text>
+					<Card.Text>{props.status === 'complete' ? 'Mission completed on: ' + new Date(props.max_date).toLocaleDateString(undefined, dateSettings) : ''}</Card.Text>
 				</Card.Body>
+				<span><input onChange={(e) => onDateChange(e)} id="date" type="date" min={props.landing_date} max={props.max_date} />
+				<button onClick={onButtonClick}>See photos</button> </span>
 			</Card>
 		</>
 	);

@@ -1,72 +1,85 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { PHOTOS_PER_PAGE } from "../settings";
+import { Range } from "../Context";
 
-const itemsPerPage = 5;
 
-export const calculateNumberOfPages = (photosList) => {
-	let totalPages = 0;
 
-	// if (typeof photosList.isArray() && photosList.length > 0) {
-	if (photosList.length % itemsPerPage === 0) {
-		totalPages = parseInt(photosList.length / itemsPerPage);
-	} else {
-		totalPages = parseInt(photosList.length / itemsPerPage) + 1;
-	}
-
-	console.log("total pages:", totalPages);
-
-	return totalPages;
-	// }
-};
-
-export const calculatePageData = (page, photosList) => {
-	if (typeof page === "undefined") {
-		page = 1;
-	}
-
-	let min = page * itemsPerPage - itemsPerPage;
-	let max = page * itemsPerPage;
-
-	return photosList.slice(min, max);
-};
 
 export default function Pagination(props) {
-	console.log(props);
-
-	const [elements, setElements] = useState([]);
-
-	const ancorClick = () => {
-		console.log("clicked ancor");
-	};
-
-	const createPages = () => {
-		const totalPages = calculateNumberOfPages(props.photosList);
-		console.log("inside method", totalPages);
-
-		let tempElements = [];
-		for (let i = 0; i < totalPages; i++) {
-			tempElements.push((i + 1).toString());
-		}
-		setElements(tempElements);
-		console.log(tempElements);
-	};
+	const [range, setRange] = useContext(Range);
+	const [page, setNewPage] = useState(1);
 
 	useEffect(() => {
-		console.log("useeffect");
+		console.log(range);
+	}, [])	
+	console.log('length: ', props.photosList.length);
 
-		createPages();
-	}, []);
+	// // Returns a part of the photosList that corresponds to the particular page.
+	const calculatePageData = () => {
+		if (typeof page === "undefined") {
+			setNewPage(1);
+		}
+
+		let min = page * PHOTOS_PER_PAGE - PHOTOS_PER_PAGE;
+		let max = page * PHOTOS_PER_PAGE;
+
+		setRange({
+			min: min,
+			max: max
+		});
+
+		// return props.photosList.slice(min, max);
+	};
+
+	// Based on the photosList and the photos per page, it calculates the number of 
+	// pages
+	const calculateNumberOfPages = () => {
+		let totalPages = 0;
+
+		if (props.photosList.length % PHOTOS_PER_PAGE === 0) {
+			totalPages = parseInt(props.photosList.length / PHOTOS_PER_PAGE);
+		} else {
+			totalPages = parseInt(props.photosList.length / PHOTOS_PER_PAGE) + 1;
+		}
+
+		return totalPages;
+	};
+
+	const btnClick = () => {
+		const totalNumberOfPages = calculateNumberOfPages();
+		const goToPageValue = document.getElementById('pageInput').value;
+		
+		if (goToPageValue >= 1 || goToPageValue <= totalNumberOfPages) {
+			setNewPage(goToPageValue);
+		} else if (goToPageValue > totalNumberOfPages) {
+			setNewPage(totalNumberOfPages);
+		} else if (goToPageValue < 1) {
+			setNewPage(1);
+		}
+
+		document.getElementById('pageInput').value = '';
+		calculatePageData();
+	}
+
+	useEffect(() => {
+		calculatePageData();
+	}, [page])
+	
+	useEffect(() => {
+		calculatePageData();
+	}, [])
+
 
 	return (
 		<>
-			{elements.map((element) => {
-				return (
-					<a
-						style={{ padding: "10px", cursor: "pointer" }}
-						onClick={ancorClick}>
-						{element}
-					</a>
-				);
-			})}
+			<div>
+				<a style={{ padding: "10px", cursor: "pointer" }}>
+					Page {page} of {calculateNumberOfPages()}
+				</a>
+				<input id="pageInput" className="form-control mx-2" type="text" name="pageNumber" style={{ width: '70px', display: 'inline' }} />
+				<button onClick={btnClick} className="btn btn-secondary">Go</button>
+			</div>
+
 		</>
 	);
 }

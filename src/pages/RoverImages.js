@@ -1,27 +1,35 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams, } from "react-router-dom";
-import PhotoCard from "../components/PhotoCard";
-import Pagination, { calculateNumberOfPages, calculatePageData } from "../components/Pagination";
-
+import Pagination from "../components/Pagination";
+import { URL, API_KEY, PHOTOS_PER_PAGE } from "../settings";
+import ImageCard from "../components/ImageCard";
+import { Range } from "../Context";
 
 export default function RoverImages(props) {
-	const [photosList, setPhotosList] = useState([]);
+	const [retrievedPhotosList, setRetrievedPhotosList] = useState([]);
 	const [photosForPage, setPhotosForPage] = useState([]);
+	const [range, setRange] = useState({ min: 1, max: PHOTOS_PER_PAGE });
 	const navigate = useNavigate();
 	let param = useParams();
 
-	const itemsPerPage = 10;
-	let pages = 1;
+	useEffect(() => {
+		console.log('start');
+		console.log(range);
+		setPhotosForPage(retrievedPhotosList.slice(range.min, range.max));
+	}, []);
 
-	// console.clear();
+	useEffect(() => {
+		console.log(range);
+		setPhotosForPage(retrievedPhotosList.slice(range.min, range.max));
+	}, [range]);
+
+
 	console.log("Image width:", props.width);
 	console.log("Image height:", props.height);
 	console.log("url parameter rover:", param.rover);
 	console.log("url parameter date:", param.date);
 
-	// const API_KEY = "DEMO_KEY";
-	const API_KEY = "vuvuUIFsCQhCJlgXemaYG2Db3CSnqNQTaQ35rj5m";
 
 	const URL_BEGINNING =
 		"https://api.nasa.gov/mars-photos/api/v1/rovers/" +
@@ -31,30 +39,25 @@ export default function RoverImages(props) {
 		: "/photos?sol=1000";
 	const URL_API_KEY = "&api_key=" + API_KEY;
 
-	// const photosList = require("../data/photosCuriocity.json").data.photos;
-
 	useEffect(() => {
 		if (typeof param.rover !== "undefined") {
-			axios.get(URL_BEGINNING + URL_DATE_PART + URL_API_KEY).then((res) => {
-				console.log("res:");
-				console.log(res);
-				console.log(res.data.photo);
-				setPhotosList(res.data.photos);
-			});
+			axios.get(URL_BEGINNING + URL_DATE_PART + URL_API_KEY)
+				.then((res) => {
+					// console.log("res:");
+					// console.log(res);
+					// console.log(res.data.photos);
+					setRetrievedPhotosList(res.data.photos);
+				})
+				.catch(function (error) {
+					if (error.response) {
+						// console.log(error.response.data);
+						// console.log(error.response.status);
+					}
+				})
 		}
 	}, []);
 
-	// const calculatePageData = (page) => {
-	// 	if (typeof page === "undefined") {
-	// 		page = 1;
-	// 	}
 
-	// 	let min = page * itemsPerPage - itemsPerPage;
-	// 	let max = page * itemsPerPage;
-
-	// 	setPhotosForPage(photosList.slice(min, max));
-	// 	console.log(photosForPage);
-	// };
 
 	const photoClick = (imgsrc) => {
 		navigate("/photo/", { state: { imgsrc: imgsrc } });
@@ -64,48 +67,29 @@ export default function RoverImages(props) {
 		navigate(-1);
 	};
 
-	useEffect(() => {
-		setPhotosForPage(calculatePageData(1, photosList));
-	}, [photosList]);
+	// useEffect(() => {
+	// 	setPhotosForPage(calculatePageData(1, retrievedPhotosList));
+	// }, [retrievedPhotosList]);
 
 	return (
 		<>
-			<h3>Photos by {param.rover}</h3>
-			<a
-				style={{
-					border: "1px solid blue",
-					padding: "4px 10px",
-					cursor: "pointer",
-				}}
-				onClick={backClick}>
-				Return to rovers
-			</a>
-			{photosForPage.map((photo) => {
-				return (
-					<div key={photo.id} style={{ overflow: "hidden" }}>
-						<div
-							style={{
-								float: "left",
-								border: "2px solid green",
-								padding: "5px",
-								margin: "2px auto",
-								height: "82px",
-							}}>
-							Photo id: {photo.id} <br />
-							Taken on: {photo.earth_date} <br />
-							Camera: {photo.camera.full_name} ({photo.camera.name})
-						</div>
-						<div
-							style={{ float: "left" }}
-							onClick={() => {
-								photoClick(photo.img_src);
-							}}>
-							<PhotoCard width='100px' height='100px' imgsrc={photo.img_src} />
-						</div>
-					</div>
-				);
-			})}
-			<Pagination photosList={photosList} />
+			<Range.Provider value={[range, setRange]}>
+				<h3>Photos by {param.rover}</h3>
+				<button onClick={backClick} className="btn btn-primary" >Return to Rovers</button>
+
+
+				<div >
+					{photosForPage.map((photo) => {
+						return (
+							<>
+								<ImageCard {...photo} />
+							</>
+						);
+					})}
+				</div>
+
+				{retrievedPhotosList.length > 0 ? <Pagination photosList={retrievedPhotosList} /> : ''}
+			</Range.Provider>
 		</>
 	);
 }

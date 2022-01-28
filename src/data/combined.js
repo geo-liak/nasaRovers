@@ -1,5 +1,5 @@
 let photosCuriocity = require('./photosCuriocity.json');
-let rovers = require ('./roverData.json');
+let rovers = require('./roverData.json');
 // const jsonServer = require('json-server');
 // const server = jsonServer.create();
 
@@ -8,6 +8,6 @@ let rovers = require ('./roverData.json');
 //   })
 
 module.exports = () => ({
-    photosCuriocity: photosCuriocity,
+    roverPhotos: photosCuriocity,
     rovers: rovers
 })

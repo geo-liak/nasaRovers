@@ -1,8 +1,8 @@
-const KEY_TYPE = 'demo'; //demo or normal
-const DEVELOPMENT_MODE = false; // If true then json-server is used
+const KEY_TYPE = 'normal'; //demo or normal
+export const DEVELOPMENT_MODE = false; // If true then json-server is used
 const PORT = 4001; // json-server port
 
-export const PHOTOS_PER_PAGE = 5;
+export const PHOTOS_PER_PAGE = 8;
 
 // NASA's open APIs have certain limitations:
 // A demo key allows for:
@@ -31,10 +31,14 @@ const determineUrls = () => {
 export const API_KEY = determineApiKeys();
 
 const urls_nasa = {
-    rovers: "https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=" + API_KEY
+    domain: "https://api.nasa.gov",
+    rovers: "https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=" + API_KEY,
+    photos: "https://api.nasa.gov/mars-photos/api/v1/rovers/:rover/photos?:date&api_key=" + API_KEY
 }
 const urls_jsonServer = {
-    rovers: "http://localhost:" + PORT + "/rovers"
+    domain: "http://localhost:" + PORT,
+    rovers: "http://localhost:" + PORT + "/rovers",
+    roverPhotos: "http://localhost:" + PORT + "/roverPhotos"
 }
 
 export const URL = determineUrls();

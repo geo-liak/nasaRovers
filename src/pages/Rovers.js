@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import RoverCard from "../components/RoverCard";
-import { API_KEY } from "../settings";
+// import { API_KEY } from "../settings";
 import { URL } from '../settings';
 
 export default function Rovers() {
@@ -37,8 +37,7 @@ export default function Rovers() {
 					return <RoverCard {...rover} />;
 				})
 				: "Information about NASA rovers could not be retrieved. Please try later."}
-			<br />
-			<Button className="btn btn-success my-3">Test</Button>
+		
 
 		</div>
 	);
