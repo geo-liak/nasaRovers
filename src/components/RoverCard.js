@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { MDBDatePickerV5 } from 'mdbreact';
 import { useNavigate } from "react-router-dom";
 
 export default function RoverCard(props) {
@@ -55,8 +56,8 @@ export default function RoverCard(props) {
 					<Card.Text className="my-0"> Landed on: {new Date(props.landing_date).toLocaleDateString(undefined, dateSettings)}</Card.Text>
 					<Card.Text>{props.status === 'complete' ? 'Mission completed on: ' + new Date(props.max_date).toLocaleDateString(undefined, dateSettings) : ''}</Card.Text>
 				</Card.Body>
-				<span><input onChange={(e) => onDateChange(e)} id="date" type="date" min={props.landing_date} max={props.max_date} />
-				<button onClick={onButtonClick}>See photos</button> </span>
+				<span>  <input onChange={(e) => onDateChange(e)} id="date" type="date" min={props.landing_date} max={props.max_date} />
+				<button title={"Show photos taken on " + ''} onClick={onButtonClick}>See photos</button> </span>
 			</Card>
 		</>
 	);

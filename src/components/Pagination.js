@@ -11,7 +11,7 @@ export default function Pagination(props) {
 
 	useEffect(() => {
 		console.log(range);
-	}, [])	
+	}, [])
 	console.log('length: ', props.photosList.length);
 
 	// // Returns a part of the photosList that corresponds to the particular page.
@@ -47,13 +47,16 @@ export default function Pagination(props) {
 
 	const btnClick = () => {
 		const totalNumberOfPages = calculateNumberOfPages();
-		const goToPageValue = document.getElementById('pageInput').value;
-		
-		if (goToPageValue >= 1 || goToPageValue <= totalNumberOfPages) {
+		const goToPageValue = (document.getElementById('pageInput').value === "" ? NaN : Number(document.getElementById('pageInput').value));
+
+
+		if (goToPageValue >= 1 && goToPageValue <= totalNumberOfPages) {
 			setNewPage(goToPageValue);
-		} else if (goToPageValue > totalNumberOfPages) {
+		}
+		else if (goToPageValue > totalNumberOfPages) {
 			setNewPage(totalNumberOfPages);
-		} else if (goToPageValue < 1) {
+		}
+		else if (goToPageValue < 1) {
 			setNewPage(1);
 		}
 
@@ -61,10 +64,11 @@ export default function Pagination(props) {
 		calculatePageData();
 	}
 
+
 	useEffect(() => {
 		calculatePageData();
 	}, [page])
-	
+
 	useEffect(() => {
 		calculatePageData();
 	}, [])
