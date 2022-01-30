@@ -41,14 +41,14 @@
 
 
 .closeModalX {
-  color: rgba(253, 171, 171, 0.671);
+  color: rgba(255, 203, 82, 0.671);
   -webkit-text-stroke: 0.5px rgb(0, 0, 0);
   font-size: 25px;
   cursor: pointer;
 }
 
 .backdropColor {
-  background-color: rgba(0, 0, 0);
+  background-color: rgba(0, 0, 0, 1);
 }
 
 .infoBackgroundColor {
@@ -61,8 +61,22 @@
 }
 
 .roverCard {
+  background-color: #f3f3f344 !important;
   width: 45%;
   position: center;
   margin: 20px auto;
   padding: 5px 10px;
 }
+
+.width-100 {
+  width: 100%;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.infoColor {
+  color: white;
+}
+

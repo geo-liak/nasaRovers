@@ -23,9 +23,9 @@ export default function ImageCard(props) {
                     }}
                 >
                     <span className='align-text-bottom'>
-                        <span style={{ color: '#fff8' }}>Photo id: </span>{props.id} <br />
-                        <span style={{ color: '#fff8' }}>Taken on: </span>{props.earth_date} <br />
-                        <span style={{ color: '#fff8' }}>Camera: </span>{props.camera.full_name + ' (' + props.camera.name + ')'}
+                        <span className="description">Photo id: </span>{props.id} <br />
+                        <span className="description">Taken on: </span>{props.earth_date} <br />
+                        <span className="description">Camera: </span>{props.camera.full_name + ' (' + props.camera.name + ')'}
                     </span>
                 </div>
             </div>

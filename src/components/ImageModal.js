@@ -9,6 +9,11 @@ export default function ImageModal(props) {
         props.showing(false);
     }
 
+    const showInfo = () => {
+        document.getElementById('imageInformation').classList.toggle('hide');
+        document.getElementById('info').classList.toggle('hide');
+    }
+
     const toggleFullscreen = () => {
         console.log('toggle fullscreen')
         setIsFullscreen(!isFullsreen);
@@ -28,7 +33,7 @@ export default function ImageModal(props) {
 
     const detectKey = (e) => {
         if (e.key === 'i' || e.key === 'I' || e.keyCode === 9) {
-            document.getElementById('imageInformation').classList.toggle('hide');
+            showInfo();
         } else if (e.keyCode === 27) {
             closeTheModal();
         }
@@ -37,21 +42,31 @@ export default function ImageModal(props) {
     useEffect(() => {
         document.addEventListener('keydown', detectKey);
         return () => {
-            document.removeEventListener('keydown', detectKey);}
+            document.removeEventListener('keydown', detectKey);
+        }
     }, [])
-    
+
 
     return (
         <>
-            <Modal onKeydown={(e) => {detectKey(e)}} fullscreen={isFullsreen} keyboard="true" show="true" className="backdropColor modal">
+            <Modal data-focus="false" data-backdrop="false" onKeydown={(e) => { detectKey(e) }} fullscreen={isFullsreen} keyboard="true" show="true" className="backdropColor modal">
                 <span id="closeButton" className="position-absolute top-0 end-0 px-3 closeModalX" onClick={closeTheModal}>&times;</span>
                 <img onClick={toggleFullscreen} src={props.img_src} />
-                <div id="imageInformation" className='mask text-start d-flex align-items-end hide'>
-                    <span style={{width: '100%'}}className='align-text-bottom infoBackgroundColor px-3 pb-1 pt-4'>
-                        <span style={{ color: '#ffffffaa' }}>Photo id: </span>{props.id} <br />
-                        <span style={{ color: '#ffffffaa' }}>Taken on: </span>{props.earth_date} <br />
-                        <span style={{ color: '#ffffffaa' }}>Camera: </span>{props.camera.full_name + ' (' + props.camera.name + ')'}
+                <div id="imageInformation" className="mask text-start d-flex align-items-end hide">
+                    <span className="width-100 align-text-bottom infoBackgroundColor px-3 pb-1 pt-4">
+                        <span className="description ">Photo id: </span>{props.id} <br />
+                        <span className="description ">Taken on: </span>{props.earth_date} <br />
+                        <span className="description ">Camera: </span>{props.camera.full_name + ' (' + props.camera.name + ')'}
                     </span>
+                </div>
+                <div onClick={showInfo} id="info" className="mask text-end d-flex align-items-end">
+                    <span className="width-100 align-text-bottom text-end p-2 pe-3 infoColor" ><i class="fas fa-info-circle"></i></span>
+                </div>
+                <div class="tooltip bs-tooltip-top" role="tooltip">
+                    <div class="arrow"></div>
+                    <div class="tooltip-inner">
+                        Some tooltip text!
+                    </div>
                 </div>
             </Modal>
         </>

@@ -59,7 +59,13 @@ export default function Pagination(props) {
 		calculatePageData();
 	}
 
-
+	const nextPage = () => {
+		setNewPage(page + 1);
+	}
+	
+	const previousPage = () => {
+		setNewPage(page - 1);
+	}
 	useEffect(() => {
 		calculatePageData();
 	}, [page])
@@ -73,11 +79,13 @@ export default function Pagination(props) {
 	return (
 		<>
 			<div>
+				<span onClick={previousPage}><i class="fas fa-angle-left px-2"></i></span>
 				<a style={{ padding: "10px", cursor: "pointer" }}>
 					Page {page} of {calculateNumberOfPages()}
 				</a>
 				<input id="pageInput" className="form-control mx-2" type="text" name="pageNumber" style={{ width: '70px', display: 'inline' }} />
 				<button onClick={btnClick} className="btn btn-secondary">Go</button>
+				<span onClick={nextPage}><i class="fas fa-angle-right px-3"></i></span>
 			</div>
 		</>
 	);
