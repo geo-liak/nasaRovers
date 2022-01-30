@@ -2,19 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { PHOTOS_PER_PAGE } from "../settings";
 import { Range } from "../Context";
 
-
-
-
 export default function Pagination(props) {
 	const [range, setRange] = useContext(Range);
 	const [page, setNewPage] = useState(1);
-
 	useEffect(() => {
 		console.log(range);
 	}, [])
 	console.log('length: ', props.photosList.length);
 
-	// // Returns a part of the photosList that corresponds to the particular page.
+	// Calculates the start and end point of the photosList that will be shown on
+	// the particular page.
 	const calculatePageData = () => {
 		if (typeof page === "undefined") {
 			setNewPage(1);
@@ -27,8 +24,6 @@ export default function Pagination(props) {
 			min: min,
 			max: max
 		});
-
-		// return props.photosList.slice(min, max);
 	};
 
 	// Based on the photosList and the photos per page, it calculates the number of 
@@ -74,6 +69,7 @@ export default function Pagination(props) {
 	}, [])
 
 
+
 	return (
 		<>
 			<div>
@@ -83,7 +79,6 @@ export default function Pagination(props) {
 				<input id="pageInput" className="form-control mx-2" type="text" name="pageNumber" style={{ width: '70px', display: 'inline' }} />
 				<button onClick={btnClick} className="btn btn-secondary">Go</button>
 			</div>
-
 		</>
 	);
 }

@@ -1,13 +1,18 @@
 
 import { MDBCard } from "mdb-react-ui-kit";
+import { useState } from "react";
+import ImageModal from "./ImageModal";
 
 export default function ImageCard(props) {
 
-    // This is the card that will be used in the rover's photo list.
-    // The PhotoCard is about to be deleted.
-    
+    const [showModal, setShowModal] = useState(false);
+
+    const handleClick = () => {
+        setShowModal(!showModal);
+    }
+
     return (
-        <MDBCard style={{ width: '18rem', display: 'inline-block' }} className="bg-image hover-overlay m-3">
+        <MDBCard onClick={handleClick} style={{ width: '18rem', display: 'inline-block' }} className="bg-image hover-overlay m-3">
             <div className='bg-image hover-overlay' style={{ maxWidth: '24rem' }}>
                 <img src={props.img_src} className='w-100' />
                 <div
@@ -24,6 +29,8 @@ export default function ImageCard(props) {
                     </span>
                 </div>
             </div>
+
+            {showModal && <ImageModal showing={setShowModal} {...props} />}
         </MDBCard>
     )
 }
