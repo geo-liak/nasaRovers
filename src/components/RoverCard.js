@@ -26,29 +26,9 @@ export default function RoverCard(props) {
 	};
 
 
-
-	const style = {
-		// color: "red",
-		borderStyle: "solid",
-		borderWidth: "2px",
-		width: "45%",
-		position: "center",
-		margin: "20px auto",
-		padding: "5px 10px",
-	};
-
 	return (
 		<>
-			{/* {console.log(props.name)} */}
-			{/* <div key={props.id} style={style} onClick={onCardClick}>
-				<h4>{props.name}</h4>
-				<p>has taken {props.total_photos} images.</p>
-				<p>It was landed on {new Date(props.landing_date).toLocaleDateString(undefined, dateSettings)}.</p>
-				<p>Its mission is considered {(props.status === 'complete') ? 'completed on ' + (new Date(props.max_date).toLocaleDateString(undefined, dateSettings)) : props.status}.</p>
-			</div>
-			<input onChange={(e) => onDateChange(e)} id="date" type="date" min={props.landing_date} max={props.max_date} />
-			<button onClick={onButtonClick}>See photos</button> */}
-			<Card className="" style={style}>
+			<Card className="roverCard">
 				<Card.Body>
 					<Card.Title className="">{props.name}</Card.Title>
 					<Card.Subtitle className="mb-2 text-muted">Mission {(props.status === 'complete') ? 'completed' : 'active'}</Card.Subtitle>
@@ -56,8 +36,8 @@ export default function RoverCard(props) {
 					<Card.Text className="my-0"> Landed on: {new Date(props.landing_date).toLocaleDateString(undefined, dateSettings)}</Card.Text>
 					<Card.Text>{props.status === 'complete' ? 'Mission completed on: ' + new Date(props.max_date).toLocaleDateString(undefined, dateSettings) : ''}</Card.Text>
 				</Card.Body>
-				<span>  <input onChange={(e) => onDateChange(e)} id="date" type="date" min={props.landing_date} max={props.max_date} />
-				<button title={"Show photos taken on " + ''} onClick={onButtonClick}>See photos</button> </span>
+				<span>  <input className="btn btn-outline-dark me-2 px-2" onChange={(e) => onDateChange(e)} id="date" type="date" min={props.landing_date} max={props.max_date} />
+				<button className="btn btn-outline-primary" title={"how photos taken on " + ''} onClick={onButtonClick}>See photos</button> </span>
 			</Card>
 		</>
 	);

@@ -36,7 +36,7 @@ export default function Rovers() {
 				? retrievedData.rovers.map((rover) => {
 					return <RoverCard {...rover} />;
 				})
-				: "Information about NASA rovers could not be retrieved. Please try later."}
+				: (!firstRender) ? "Information about NASA rovers could not be retrieved. Please try later." : ""}
 		
 
 		</div>

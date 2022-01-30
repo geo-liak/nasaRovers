@@ -59,3 +59,10 @@
 .hide {
   visibility: hidden;
 }
+
+.roverCard {
+  width: 45%;
+  position: center;
+  margin: 20px auto;
+  padding: 5px 10px;
+}
