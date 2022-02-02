@@ -5,10 +5,10 @@ import { Range } from "../Context";
 export default function Pagination(props) {
 	const [range, setRange] = useContext(Range);
 	const [page, setNewPage] = useState(1);
+
 	useEffect(() => {
 		console.log(range);
 	}, [])
-	console.log('length: ', props.photosList.length);
 
 	// Calculates the start and end point of the photosList that will be shown on
 	// the particular page.
@@ -40,10 +40,8 @@ export default function Pagination(props) {
 		return totalPages;
 	};
 
-	const btnClick = () => {
+	const validateNewPageValue = (goToPageValue) => {
 		const totalNumberOfPages = calculateNumberOfPages();
-		const goToPageValue = (document.getElementById('pageInput').value === "" ? NaN : Number(document.getElementById('pageInput').value));
-
 
 		if (goToPageValue >= 1 && goToPageValue <= totalNumberOfPages) {
 			setNewPage(goToPageValue);
@@ -55,16 +53,23 @@ export default function Pagination(props) {
 			setNewPage(1);
 		}
 
+	}
+
+	const btnClick = () => {
+		const goToPageValue = (document.getElementById('pageInput').value === "" ? NaN : Number(document.getElementById('pageInput').value));
+
+		validateNewPageValue(goToPageValue);
+
 		document.getElementById('pageInput').value = '';
 		calculatePageData();
 	}
 
 	const nextPage = () => {
-		setNewPage(page + 1);
+		validateNewPageValue(page + 1);
 	}
-	
+
 	const previousPage = () => {
-		setNewPage(page - 1);
+		validateNewPageValue(page - 1);
 	}
 	useEffect(() => {
 		calculatePageData();
@@ -79,6 +84,7 @@ export default function Pagination(props) {
 	return (
 		<>
 			<div>
+				<span onClick={()=> {validateNewPageValue(1)}}><i class="fas fa-angle-double-left"></i></span>
 				<span onClick={previousPage}><i class="fas fa-angle-left px-2"></i></span>
 				<a style={{ padding: "10px", cursor: "pointer" }}>
 					Page {page} of {calculateNumberOfPages()}
@@ -86,6 +92,7 @@ export default function Pagination(props) {
 				<input id="pageInput" className="form-control mx-2" type="text" name="pageNumber" style={{ width: '70px', display: 'inline' }} />
 				<button onClick={btnClick} className="btn btn-secondary">Go</button>
 				<span onClick={nextPage}><i class="fas fa-angle-right px-3"></i></span>
+				<span onClick={() => {validateNewPageValue(calculateNumberOfPages())}}><i class="fas fa-angle-double-right"></i></span>
 			</div>
 		</>
 	);

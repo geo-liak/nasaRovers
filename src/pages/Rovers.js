@@ -31,15 +31,15 @@ export default function Rovers() {
 	}, [retrievedData])
 
 	return (
+		<>
 		<div>
 			<h1> NASA Rovers</h1>
 			{typeof retrievedData !== "undefined"
-				? retrievedData.rovers.map((rover) => {
-					return <RoverCard {...rover} />;
+				? retrievedData.rovers.map((rover, index) => {
+					return <RoverCard uniqueKey={index} key={index} {...rover} />;
 				})
 				: (!firstRender) ? "Information about NASA rovers could not be retrieved. Please try later." : ""}
-		
-
 		</div>
+		</>
 	);
 }

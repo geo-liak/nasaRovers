@@ -49,7 +49,7 @@ export default function ImageModal(props) {
 
     return (
         <>
-            <Modal data-focus="false" data-backdrop="false" onKeydown={(e) => { detectKey(e) }} fullscreen={isFullsreen} keyboard="true" show="true" className="backdropColor modal">
+            <Modal onKeydown={(e) => { detectKey(e) }} fullscreen={isFullsreen} keyboard="true" show="true" className="backdropColor modal">
                 <span id="closeButton" className="position-absolute top-0 end-0 px-3 closeModalX" onClick={closeTheModal}>&times;</span>
                 <img onClick={toggleFullscreen} src={props.img_src} />
                 <div id="imageInformation" className="mask text-start d-flex align-items-end hide">
