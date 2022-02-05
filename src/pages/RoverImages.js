@@ -43,15 +43,10 @@ export default function RoverImages(props) {
 		if (typeof param.rover !== "undefined") {
 			axios.get(URL_BEGINNING + URL_DATE_PART + URL_API_KEY)
 				.then((res) => {
-					// console.log("res:");
-					// console.log(res);
-					// console.log(res.data.photos);
 					setRetrievedPhotosList(res.data.photos);
 				})
 				.catch(function (error) {
 					if (error.response) {
-						// console.log(error.response.data);
-						// console.log(error.response.status);
 					}
 				})
 		}
@@ -66,10 +61,6 @@ export default function RoverImages(props) {
 	const backClick = () => {
 		navigate(-1);
 	};
-
-	// useEffect(() => {
-	// 	setPhotosForPage(calculatePageData(1, retrievedPhotosList));
-	// }, [retrievedPhotosList]);
 
 	return (
 		<>
