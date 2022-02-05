@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
+import { parseDate } from "../common/dateHandling";
 
 
 export default function ImageModal(props) {
@@ -55,7 +56,7 @@ export default function ImageModal(props) {
                 <div id="imageInformation" className="mask text-start d-flex align-items-end hide">
                     <span className="width-100 align-text-bottom infoBackgroundColor px-3 pb-1 pt-4">
                         <span className="description ">Photo id: </span>{props.id} <br />
-                        <span className="description ">Taken on: </span>{props.earth_date} <br />
+                        <span className="description ">Taken on: </span>{parseDate(props.earth_date, 'short')} <br />
                         <span className="description ">Camera: </span>{props.camera.full_name + ' (' + props.camera.name + ')'}
                     </span>
                 </div>
@@ -71,4 +72,4 @@ export default function ImageModal(props) {
             </Modal>
         </>
     )
-}
+}   

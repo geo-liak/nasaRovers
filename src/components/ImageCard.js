@@ -2,6 +2,8 @@
 import { MDBCard } from "mdb-react-ui-kit";
 import { useState } from "react";
 import ImageModal from "./ImageModal";
+import { parseDate } from "../common/dateHandling";
+
 
 export default function ImageCard(props) {
 
@@ -24,7 +26,7 @@ export default function ImageCard(props) {
                 >
                     <span className='align-text-bottom'>
                         <span className="description">Photo id: </span>{props.id} <br />
-                        <span className="description">Taken on: </span>{props.earth_date} <br />
+                        <span className="description">Taken on: </span>{parseDate(props.earth_date, 'short')} <br />
                         <span className="description">Camera: </span>{props.camera.full_name + ' (' + props.camera.name + ')'}
                     </span>
                 </div>

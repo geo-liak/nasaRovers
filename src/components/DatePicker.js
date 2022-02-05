@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { DatePickerValue } from "../Context";
+import { parseDate } from "../common/dateHandling";
 
 // props:
 // min: the minimum date available for selection in the datepicker
@@ -64,7 +65,8 @@ export default function DatePicker(props) {
                     className={`clearDate ps-2 ${!isDateSelected ? 'hide' : ''}`}>&times;</span> : ''}
 
 
-                <span onClick={toggleModal} id="dateInfo" className="dateInfo ps-2" >{isDateSelected ? new Date(selectedDate).toLocaleDateString(undefined, dateSettings) : ''}</span>
+                <span onClick={toggleModal} id="dateInfo" className="dateInfo ps-2" >{isDateSelected ? parseDate(selectedDate, "short") : ''}</span>
+              
 
 
                 <Modal
