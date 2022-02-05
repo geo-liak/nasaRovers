@@ -24,11 +24,6 @@ export default function Rovers() {
 	}, []);
 
 
-	useEffect(() => {
-		if (!firstRender) {
-			console.log(retrievedData);
-		}
-	}, [retrievedData])
 
 	return (
 		<>

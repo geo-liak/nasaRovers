@@ -95,3 +95,21 @@
 .dateIconSelectedDate {
   color: rgb(0, 173, 0);
 }
+
+.clearDate {
+  font-size: 15px;
+  font-weight: 100;
+  cursor: pointer;
+  top: -3px;
+  left: 1px;
+  position: relative;
+}
+
+.dateIconSize {
+  font-size: 23px !important;
+}
+
+.dateInfo {
+  position: relative;
+   top: -1px; 
+}
