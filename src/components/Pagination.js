@@ -94,21 +94,24 @@ export default function Pagination(props) {
 		calculatePageData();
 	}, [])
 
-
+	const handleHover = (e) => {
+		console.log('hove');
+		document.getElementById('btnFirst').classList.add('overPaginationElement');
+	}
 
 	return (
 		<>
 			{calculateNumberOfPages() > 1 ?
 				<div>
-					<span title={page === 1 ? '' : "Go to first page"} onClick={() => { validateNewPageValue(1) }}><i class="fas fa-angle-double-left"></i></span>
-					<span title={page === 1 ? '' : 'Go to page ' + (page - 1)} onClick={previousPage}><i class="fas fa-angle-left px-2"></i></span>
+					<span title={page === 1 ? 'You are already at the first page' : "Go to first page"} onClick={() => { validateNewPageValue(1) }}><i class="fas fa-angle-double-left"></i></span>
+					<span title={page === 1 ? 'You are already at the first page' : 'Go to page ' + (page - 1)} onClick={previousPage}><i class="fas fa-angle-left px-2"></i></span>
 					<a style={{ padding: "10px", cursor: "pointer" }}>
 						Page {page} of {calculateNumberOfPages()}
 					</a>
 					<input id="pageInput" className="form-control mx-2" type="text" name="pageNumber" style={{ width: '70px', display: 'inline' }} />
 					<button onClick={btnClick} className="btn btn-secondary">Go</button>
-					<span title={page === calculateNumberOfPages() ? '' : 'Go to page ' + (page + 1)} onClick={nextPage}><i class="fas fa-angle-right px-3"></i></span>
-					<span title={page === calculateNumberOfPages() ? '' : "Go to last page"} onClick={() => { validateNewPageValue(calculateNumberOfPages()) }}><i class="fas fa-angle-double-right"></i></span>
+					<span title={page === calculateNumberOfPages() ? 'You are already at the last page' : 'Go to page ' + (page + 1)} onClick={nextPage}><i class="fas fa-angle-right px-3"></i></span>
+					<span title={page === calculateNumberOfPages() ? 'You are already at the last page' : "Go to the last page"} onClick={() => { validateNewPageValue(calculateNumberOfPages()) }}><i class="fas fa-angle-double-right"></i></span>
 				</div>
 				: ''
 			}

@@ -43,7 +43,7 @@
 .closeModalX {
   color: rgba(255, 203, 82, 0.671);
   -webkit-text-stroke: 0.5px rgb(0, 0, 0);
-  font-size: 25px;
+  font-size: 30px;
   cursor: pointer;
 }
 
@@ -111,5 +111,29 @@
 
 .dateInfo {
   position: relative;
-   top: -1px; 
+  top: -1px;
+}
+
+.modal-backdrop {
+  z-index: -1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-zoomIn {
+  cursor: zoom-in;
+}
+
+.cursor-zoomOut {
+  cursor: zoom-out;
+}
+
+.img-responsive{
+  margin:0 auto;
+}
+
+.overPaginationElement {
+  color: indigo;
 }

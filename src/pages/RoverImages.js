@@ -70,11 +70,9 @@ export default function RoverImages(props) {
 
 
 				<div >
-					{photosForPage.map((photo) => {
+					{photosForPage.map((photo, index) => {
 						return (
-							<>
-								<ImageCard {...photo} />
-							</>
+							<ImageCard key={index} {...photo} />
 						);
 					})}
 				</div>

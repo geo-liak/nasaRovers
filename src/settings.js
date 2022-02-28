@@ -2,7 +2,7 @@ const KEY_TYPE = 'normal'; //demo or normal
 export const DEVELOPMENT_MODE = false; // If true then json-server is used
 const PORT = 4001; // json-server port
 
-export const PHOTOS_PER_PAGE = 8;
+export const PHOTOS_PER_PAGE = 1;
 
 // NASA's open APIs have certain limitations:
 // A demo key allows for:
