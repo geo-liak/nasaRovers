@@ -1,6 +1,6 @@
 
 import { MDBCard } from "mdb-react-ui-kit";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ImageModal from "./ImageModal";
 import { parseDate } from "../common/dateHandling";
 import { ShowImage } from "../Context";
