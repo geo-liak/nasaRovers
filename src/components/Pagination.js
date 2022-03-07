@@ -98,7 +98,7 @@ export default function Pagination(props) {
 				<div className="mb-4">
 					<span title={page === 1 ? 'You are already at the first page' : "Go to first page"} onClick={() => { validateNewPageValue(1) }} className={page === 1 ? 'cursor-default' : 'cursor-pointer'}><i class="fas fa-angle-double-left"></i></span>
 					<span title={page === 1 ? 'You are already at the first page' : 'Go to page ' + (page - 1)} onClick={previousPage} className={page === 1 ? 'cursor-default' : 'cursor-pointer'}><i class="fas fa-angle-left px-2"></i></span>
-					<span style={{ padding: "10px"}}>
+					<span style={{ padding: "10px" }}>
 						Page {page} of {calculateNumberOfPages()}
 					</span>
 					<input id="pageInput" className="form-control mx-2" type="text" name="pageNumber" style={{ width: '70px', display: 'inline' }} />

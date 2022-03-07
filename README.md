@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Purpose  
+The aim of this application was to practise with React. It uses NASA's API to bring information about the rovers that have been sent to Mars and display the photos that were taken on a particular date.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Copyright
+All information displayed in this application, including the images of the rovers, have been taken from NASA. For NASA's image use policy see https://gpm.nasa.gov/image-use-policy.
 
-## Available Scripts
+# Project Information  
+This application was developed using:  
+• npm version 8.4.1  
+• node version 16.13.1  
+• json-server verion 0.17.0
 
-In the project directory, you can run:
 
-### `yarn start`
+# Steps to run the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Clone the repository into some local folder:
+```git clone https://github.com/geo-liak/nasaRovers.git```  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Change to the folder that was created.  
 
-### `yarn test`
+3. Install the dependencies:  
+```npm install```  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. (optional) Run the json-server:  
+```json-server --watch ./src/data/combined.js --port 4001```  
 
-### `yarn build`
+5. From a separate terminal window, go to the project folder (step 2) and run:  
+```npm start```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# About JSON-server
+Some limited data can be seen with json-server.  
+For json server to be installed, the following command must be used:
+```
+npm install -g json-server
+```
+  
+To use json-server instead of NASA's API change ```DEVELOPMENT_MODE``` to true in the ```settings.js```.  
+The json-server port is set to 4001. If you need to change to another port, change ```PORT``` in file ```settings.js``` and use the new port when starting the json-server in step 4.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
