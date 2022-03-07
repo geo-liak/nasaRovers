@@ -12,7 +12,6 @@ export default function DatePicker(props) {
     const [selectedDate, setSelectedDate] = useContext(DatePickerValue);
     const [isDateSelected, setIsDateSelected] = useState(false);
     const [tempDate, setTempDate] = useState();
-	const dateSettings = { day: "numeric", month: 'numeric', year: 'numeric'};
 
 
     useEffect(() => {

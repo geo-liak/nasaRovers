@@ -16,8 +16,6 @@ export default function Pagination(props) {
 	}
 
 	useEffect(() => {
-		console.log(range);
-
 		document.addEventListener('keydown', detectKey);
 		return () => {
 			document.removeEventListener('keydown', detectKey);
@@ -93,11 +91,6 @@ export default function Pagination(props) {
 	useEffect(() => {
 		calculatePageData();
 	}, [])
-
-	const handleHover = (e) => {
-		console.log('hove');
-		document.getElementById('btnFirst').classList.add('overPaginationElement');
-	}
 
 	return (
 		<>

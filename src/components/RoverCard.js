@@ -11,7 +11,6 @@ import perseverance from "../images/Perseverance.jpg";
 
 export default function RoverCard(props) {
 	const [selectedDate, setSelectedDate] = useState('');
-	const dateSettings = { weekday: 'long', month: 'long', year: 'numeric', day: "numeric" };
 
 	let navigate = useNavigate();
 
@@ -24,7 +23,6 @@ export default function RoverCard(props) {
 	};
 
 	useEffect(() => {
-		console.log(selectedDate);
 	}, [selectedDate]);
 
 	const roverImage = (roverName) => {
@@ -37,6 +35,8 @@ export default function RoverCard(props) {
 				return perseverance;
 			case "opportunity":
 				return opportunity;
+			default:
+				return null;
 		}
 	}
 
@@ -48,7 +48,7 @@ export default function RoverCard(props) {
 					<div style={{ overflow: "hidden" }} className="mb-2">
 
 						<div style={{ width: '50%', height: '100%', float: 'left' }} >
-							<img src={roverImage(props.name)} width="100%"></img>
+							<img src={roverImage(props.name)} alt={props.name} width="100%"></img>
 						</div>
 						<div style={{ width: '50%', float: 'right' }} >
 							<div style={{ margin: "auto 0" }}>

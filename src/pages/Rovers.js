@@ -15,9 +15,7 @@ export default function Rovers() {
 	const [retrievedData, setRetrievedData] = useState();
 
 	useEffect(() => {
-		console.log(URL.rovers)
 		axios.get(URL.rovers).then((res) => {
-			console.log(res);
 			setRetrievedData(res.data);
 		});
 		setFirstRender(false);
