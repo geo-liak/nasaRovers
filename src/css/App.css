@@ -118,6 +118,10 @@
   z-index: -1;
 }
 
+.cusros-default {
+  cursor: default;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
